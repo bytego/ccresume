@@ -7,7 +7,15 @@ export default new Router({
   routes: [
     {
       path: '/',
-      component: resolve => require(['@/pages/ResumeSearch.vue'], resolve),
+      component: resolve => require(['@/index.vue'], resolve),
+    },
+    {
+      path: '/cclist',
+      component: resolve => require(['@/components/cc-list.vue'], resolve),
+    },
+    {
+      path: '/detail',
+      component: resolve => require(['@/detail.vue'], resolve),
     },
     {
       path: '/profile',

@@ -1,12 +1,8 @@
 <template>
   <div id="app">
     <cc-header></cc-header>
-    <div class="app-main">
-      <sidebar :sResume="resume" :sAvatar='avatar' @sAdd="add" @sDel='del' @sClear='reset' @changePic='change' @changeJson='changeJ' @sCc='cc'></sidebar>
-      <subject :sResume="resume" @sAdd="add" @sDel='del'></subject>
-    </div>
+    <router-view></router-view>
     <cc-footer></cc-footer>
-    <cc-list></cc-list>
   </div>
 </template>
 
