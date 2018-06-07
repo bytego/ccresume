@@ -38,7 +38,7 @@ module.exports = {
         options: vueLoaderConfig
       },
       {
-        test: /muse-ui.src.*?js$/,
+        test: /src.*?js$/,
         loader: 'babel-loader',
         include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
       },
@@ -57,6 +57,13 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('media/[name].[hash:7].[ext]')
         }
+      },
+      {//加载资源
+        test:/\.css$/,
+        use:[//读取css文件
+          'style-loader',//将js文件读取到html中
+          'css-loader',
+        ]
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,

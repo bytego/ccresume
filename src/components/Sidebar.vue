@@ -271,7 +271,6 @@ export default {
 <style>
 .sidebar {
   width: 25%;
-  min-height: 100vh;
   color: #fff;
   vertical-align: top;
   transition: 0.5s;

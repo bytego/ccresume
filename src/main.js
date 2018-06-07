@@ -3,7 +3,7 @@ import App from './App'
 import Router from './router'
 
 import 'muse-components/styles/base.less'
-import row from 'muse-components/grid'
+// import row from 'muse-components/grid'
 import row from 'muse-components/grid/row'
 import col from 'muse-components/grid/col'
 import slider from 'muse-components/slider'

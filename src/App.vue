@@ -1,7 +1,11 @@
 <template>
   <div id="app">
-    <sidebar :sResume="resume" :sAvatar='avatar' @sAdd="add" @sDel='del' @sClear='reset' @changePic='change' @changeJson='changeJ' @sCc='cc'></sidebar>
-    <subject :sResume="resume" @sAdd="add" @sDel='del'></subject>
+    <cc-header></cc-header>
+    <div class="app-main">
+      <sidebar :sResume="resume" :sAvatar='avatar' @sAdd="add" @sDel='del' @sClear='reset' @changePic='change' @changeJson='changeJ' @sCc='cc'></sidebar>
+      <subject :sResume="resume" @sAdd="add" @sDel='del'></subject>
+    </div>
+    <cc-footer></cc-footer>
   </div>
 </template>
 
@@ -9,6 +13,8 @@
 import CC from "./js/base.js";
 import Sidebar from "./components/Sidebar";
 import Subject from "./components/Subject";
+import CcHeader from "./components/cc-header";
+import CcFooter from "./components/cc-footer";
 export default {
   name: "app",
   data() {
@@ -19,7 +25,9 @@ export default {
   },
   components: {
     Sidebar,
-    Subject
+    Subject,
+    CcHeader,
+    CcFooter
   },
   methods: {
     add(val, type, index, types) {
@@ -107,19 +115,17 @@ export default {
 
 <style>
 #app {
-  margin: auto;
-  box-shadow: 0 0 5px #333;
-  display: flex;
   width: 100%;
-  min-width: 375px;
-  flex-direction: column;
+  background: #fff;
 }
 #app .sidebar {
   width: 100%;
 }
 #app .subject {
   width: 100%;
-  padding: 0;
+  padding: 20px;
+  padding-bottom: 0;
+  background: #ddd;
 }
 #app .mu-slider-thumb {
   background-color: #fff;
@@ -127,9 +133,6 @@ export default {
 }
 #app .mu-slider-fill {
   background-color: #fff;
-}
-body {
-  padding-left: calc(100vw - 100%);
 }
 @media screen and (min-width: 375px) {
   html {
@@ -165,26 +168,31 @@ body {
     height: 10em;
   }
 }
+.app-main{
+  display: flex;
+  margin: 0 auto;
+  background: #fff;
+}
 @media screen and (min-width: 1000px) {
   html {
     /* 1000px往后是每100像素0.5px增加 */
     font-size: calc(137.5% + 6 * (100vw - 1000px) / 1000);
     font-size: calc(22px + 6 * (100vw - 1000px) / 1000);
   }
-  #app {
+  .app-main {
     width: 1000px;
   }
-  #app .subject {
+  .app-main .subject {
     width: 75%;
     padding: 1.5em 2em;
   }
-  #app .avatar {
+  .app-main .avatar {
     width: 13em;
     height: 13em;
   }
 }
 @media screen and (min-width: 1200px) {
-  #app {
+  .app-main {
     width: 1200px;
   }
 }
