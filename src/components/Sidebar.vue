@@ -58,6 +58,8 @@
         <mu-float-button icon="delete_forever" mini @click="sClear()" secondary/>
         <mu-tooltip label="重置" touch :show="show.reset" :trigger="trigger.reset" />
       </div>
+
+      <mu-float-button icon="delete_forever" mini @click="sClear()" secondary/>
     </div>
     <!-- 按钮结束 -->
     <!-- 技能添加弹窗 -->
@@ -290,7 +292,7 @@ export default {
 }
 
 .sidebar .s-box-btn {
-  opacity: 0;
+  /*opacity: 0;*/
   transition: 0.5s;
 }
 

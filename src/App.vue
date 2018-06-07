@@ -50,6 +50,7 @@ export default {
     reset() {
       this.resume = {
         core: [
+
           { name: "姓名", value: "" },
           { name: "职业", value: "" },
           { name: "电话", value: "" },
