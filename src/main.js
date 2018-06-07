@@ -1,9 +1,7 @@
 import Vue from 'vue'
 import App from './App'
 import Router from './router'
-
 import 'muse-components/styles/base.less'
-// import row from 'muse-components/grid'
 import row from 'muse-components/grid/row'
 import col from 'muse-components/grid/col'
 import slider from 'muse-components/slider'
@@ -18,6 +16,7 @@ import cardActions from 'muse-components/card/cardActions'
 import tooltip from 'muse-components/tooltip'
 import textField from 'muse-components/textField'
 import datePicker from 'muse-components/datePicker'
+import snackbar from 'muse-components/snackbar'
 
 const MUComponents = {
   row
@@ -34,20 +33,12 @@ const MUComponents = {
   ,tooltip
   ,textField
   ,datePicker
+  ,snackbar
 };
 
 Object.keys(MUComponents).forEach((key) => {
   Vue.component(MUComponents[key].name, MUComponents[key])
 })
-
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  template: '<App/>',
-  components: { App },
-  router: Router
-})
-
 
 import nebulas from "nebulas"
 import nebpayCls from "nebpay.js"
@@ -155,11 +146,12 @@ Vue.prototype.$hub = new Vue({
         }
       }).then(resp => {
         if (resp.execute_err && resp.execute_err != 'insufficient balance') {
-          app.$refs.app.toast(resp.execute_err, 2000)
-          throw new Error(resp.execute_err)
+          // app.$refs.app.toast(resp.execute_err, 2000)
+          app.$refs.app.toast('1111', 2000)
+          // throw new Error(resp.execute_err)
         }
-        var result = JSON.parse(resp.result)
-        return result
+        // var result = JSON.parse(resp.result)
+        // return result
       })
     },
     nebPayCall: function (config) {
@@ -291,4 +283,12 @@ Vue.prototype.$hub = new Vue({
       }
     }
   }
+})
+
+/* eslint-disable no-new */
+app = new Vue({
+  el: '#app',
+  template: '<App ref="app" />',
+  components: { App },
+  router: Router
 })
