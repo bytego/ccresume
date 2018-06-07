@@ -10,7 +10,9 @@
 		</mu-row>
     </div>
 </template>
-<style>
-
+<style lang="less">
+#about{
+  text-align: center;
+}
 </style>
 

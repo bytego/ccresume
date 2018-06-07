@@ -19,7 +19,7 @@
     },
     components: {
       Sidebar,
-      Subject
+      Subjectsd
     },
     methods: {
       add(val, type, index, types) {

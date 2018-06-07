@@ -4,12 +4,12 @@
       <li class="logo">
         <img src="https://nebulas.io/assets/images/nebulasx60.png">
       </li>
-      <li class="title">云简历</li>
-      <li>我的简历</li>
-      <li @click="$router.push('/cclist')">简历市场</li>
+      <li class="title" @click="$router.push('/')">云简历</li>
+      <li class="item">我的简历</li>
+      <li class="item" @click="$router.push('/cclist')">简历市场</li>
     </ul>
     <ul class="nav-right">
-      <li>关于</li>
+      <li @click="$router.push('/about')">关于</li>
     </ul>
   </div>
 </template>
@@ -52,7 +52,7 @@
       cursor: pointer;
       transition: all .5s;
       transform: scale(1);
-      &:not(.logo):hover{
+      &.item:hover{
         transform: scale(1.2);
       }
       &.title{

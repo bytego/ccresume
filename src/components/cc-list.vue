@@ -3,15 +3,20 @@
     <div class="cc-list"
          @click="onClickLink()"
          v-for="item in 2">
-      <div class="left">
-        <img src="https://gkcx.eol.cn/upload/schoollogo/428.jpg">
-      </div>
+      <!--<div class="left">-->
+        <!--<img src="https://gkcx.eol.cn/upload/schoollogo/428.jpg">-->
+      <!--</div>-->
       <div class="middle">
-        <h2>姓名</h2>
+        <h2>张三</h2>
+        <small>(男)</small>
         <ul>
           <li>
             <span>职位：</span>
             <span>web前端</span>
+          </li>
+          <li>
+            <span>籍贯：</span>
+            <span>上海</span>
           </li>
           <li>
             <span>工作年限：</span>
@@ -82,13 +87,13 @@
     }
   }
   .middle{
-    width: 60%;
+    width: 80%;
     display: inline-block;
-    padding-left: 50px;
     h2{
       margin: 0;
       font-size: 24px;
       padding-bottom: 10px;
+      display: inline-block;
     }
     ul{
       margin: 0;

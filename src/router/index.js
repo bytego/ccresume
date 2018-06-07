@@ -18,6 +18,10 @@ export default new Router({
       component: resolve => require(['@/detail.vue'], resolve),
     },
     {
+      path: '/about',
+      component: resolve => require(['@/pages/About.vue'], resolve),
+    },
+    {
       path: '/profile',
       component: resolve => require(['@/pages/Profile.vue'], resolve),
     },
