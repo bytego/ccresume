@@ -6,7 +6,7 @@
       </li>
       <li class="title">云简历</li>
       <li>我的简历</li>
-      <li>简历市场</li>
+      <li @click="$router.push('/cclist')">简历市场</li>
     </ul>
     <ul class="nav-right">
       <li>关于</li>

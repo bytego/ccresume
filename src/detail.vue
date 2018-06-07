@@ -1,5 +1,5 @@
 <template>
-  <div class="app-main">
+  <div class="app-main" ref="detail">
     <sidebar :sResume="resume" :sAvatar='avatar' @sAdd="add" @sDel='del' @sClear='reset' @changePic='change' @changeJson='changeJ' @sCc='cc'></sidebar>
     <subject :sResume="resume" @sAdd="add" @sDel='del'></subject>
   </div>
@@ -20,6 +20,25 @@
     components: {
       Sidebar,
       Subject
+    },
+    mounted () {
+      this.$nextTick(() => {
+        let $input = this.$refs.detail.getElementsByTagName('input')
+        let $textarea = this.$refs.detail.getElementsByTagName('textarea')
+        let $button = this.$refs.detail.getElementsByTagName('button')
+        for (let i = 0, length = $input.length; i< length; i++) {
+          $input[i].disabled = true
+          $input[i].readOnly = true
+        }
+        for (let i = 0, length = $textarea.length; i< length; i++) {
+          $textarea[i].disabled = true
+          $textarea[i].readOnly = true
+        }
+        for (let i = 0, length = $button.length; i< length; i++) {
+          $button[i].disabled = true
+          $button[i].readOnly = true
+        }
+      })
     },
     methods: {
       add(val, type, index, types) {

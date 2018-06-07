@@ -1,6 +1,8 @@
 <template>
   <div class="list-main">
-    <div class="cc-list" v-for="item in 2">
+    <div class="cc-list"
+         @click="onClickLink()"
+         v-for="item in 2">
       <div class="left">
         <img src="https://gkcx.eol.cn/upload/schoollogo/428.jpg">
       </div>
@@ -37,6 +39,16 @@
     },
     mounted() {
       console.log(this.$route)
+    },
+    methods: {
+      onClickLink (item) {
+        this.$router.push({
+          path: '/detail',
+          query: {
+            id: 111
+          }
+        })
+      }
     }
   }
 </script>
@@ -56,7 +68,7 @@
   margin-bottom: 20px;
   cursor: pointer;
   &:hover{
-    background: #aaa;
+    background: #a1a1a1;
   }
   .left{
     width: 120px;
