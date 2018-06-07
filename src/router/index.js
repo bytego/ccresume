@@ -46,6 +46,6 @@ export default new Router({
     {
       path: '/resume/add',
       component: resolve => require(['@/pages/form/Resume.vue'], resolve),
-    },
+    }
   ]
 })

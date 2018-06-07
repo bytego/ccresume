@@ -61,6 +61,7 @@
 
       <mu-float-button icon="delete_forever" mini @click="sClear()" secondary/>
     </div>
+    <button class="cc-submit">提交简历</button>
     <!-- 按钮结束 -->
     <!-- 技能添加弹窗 -->
     <mu-dialog :open="dialogSkil" title="添加技能" @close="close('dialogSkil')">
@@ -268,7 +269,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
+<style lang="less">
 .sidebar {
   width: 25%;
   color: #fff;
@@ -280,7 +281,17 @@ export default {
   background-size: 100% 200%;
   background-position: 0 50%;
 }
-
+.cc-submit{
+  width: 100%;
+  height: 36px;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  background: #3f51b5;
+  text-align: center;
+  color: #fff;
+  margin-top: 20px;
+}
 .sidebar:hover {
   background-color: #29b6f6;
   background-position: 0 100%;

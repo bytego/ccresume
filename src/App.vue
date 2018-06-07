@@ -6,6 +6,7 @@
       <subject :sResume="resume" @sAdd="add" @sDel='del'></subject>
     </div>
     <cc-footer></cc-footer>
+    <cc-list></cc-list>
   </div>
 </template>
 
@@ -15,6 +16,7 @@ import Sidebar from "./components/Sidebar";
 import Subject from "./components/Subject";
 import CcHeader from "./components/cc-header";
 import CcFooter from "./components/cc-footer";
+import CcList from "./components/cc-list";
 export default {
   name: "app",
   data() {
@@ -27,7 +29,8 @@ export default {
     Sidebar,
     Subject,
     CcHeader,
-    CcFooter
+    CcFooter,
+    CcList
   },
   methods: {
     add(val, type, index, types) {
