@@ -246,9 +246,9 @@ export default {
     submitResume(){
 
       this.$hub
-        .nebApiCall({
+        .nebPayCall({
           func: "addColl",
-          args: [JSON.stringify(this.sResume)]
+          data: [JSON.stringify(this.sResume)]
         })
         .then(data => {
 

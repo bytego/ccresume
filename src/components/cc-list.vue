@@ -2,12 +2,9 @@
   <div class="list-main">
     <div class="cc-list"
          @click="onClickLink()"
-         v-for="item in 2">
-      <!--<div class="left">-->
-        <!--<img src="https://gkcx.eol.cn/upload/schoollogo/428.jpg">-->
-      <!--</div>-->
+         v-for="item in companyList.coll">
       <div class="middle">
-        <h2>张三</h2>
+        <h2>{{item}}</h2>
         <small>(男)</small>
         <ul>
           <li>
@@ -39,13 +36,38 @@
     name: '',
     data() {
       return {
-        name: ''
-      }
+        data: [],
+        offset: -1,
+        limit: 20,
+        companyList: {
+          total: -1,
+          company: []
+        }
+      };
     },
     mounted() {
       console.log(this.$route)
     },
+    created() {
+      this.getCompanyList();
+    },
     methods: {
+      getCompanyList() {
+        this.$hub
+          .nebApiCall({
+            func: "getCollList",
+            args: [this.limit,this.offset]
+          })
+          .then(data => {
+            if (this.offset == -1) {
+              this.offset = data.total
+            }
+            this.companyList.total = data.total
+            this.companyList.company = this.companyList.company.concat(
+              data.coll
+            );
+          });
+      },
       onClickLink (item) {
         this.$router.push({
           path: '/detail',

@@ -30,6 +30,24 @@ export default {
     CcList
   },
   methods: {
+    toast(message, time) {
+      this.toast_messae = message;
+      this.toast_state = true;
+      if(!time){
+        return
+      }
+
+      if (this.toast_timer) clearTimeout(this.toast_timer);
+
+      this.toast_timer = setTimeout(() => {
+        this.toast_state = false;
+      }, time ? time : 2000);
+    },
+    hideToast() {
+      this.toast_state = false;
+      if (this.toast_timer) clearTimeout(this.toast_timer);
+    },
+
     add(val, type, index, types) {
       let vals = {};
       for (let i in val) {

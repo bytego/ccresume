@@ -40,6 +40,8 @@ Object.keys(MUComponents).forEach((key) => {
   Vue.component(MUComponents[key].name, MUComponents[key])
 })
 
+var app
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -62,7 +64,7 @@ var HttpRequest = nebulas.HttpRequest,
 var chainnetConfig = {
   mainnet: {
     name: "主网",
-    contractAddress: "n1jPTNAdis1AwgjkrB2xeoRhDowjMqKz8wh",
+    contractAddress: "n21iZGpg1eyWJDJLz2UUBQhqpgRncHVgRJZ",
     txhash: "51fdf96049a0335425cd69a0bf149c120fd96365d4774b523005eb957de97fb5",
     host: "https://mainnet.nebulas.io",
     payhost: "https://pay.nebulas.io/api/mainnet/pay",
@@ -173,7 +175,6 @@ Vue.prototype.$hub = new Vue({
         options = {
           callback: chainInfo.payhost,
           listener: function (value) {
-            mylog("listener:", value, serialNumber)
 
             if (typeof value == 'string') {
 
