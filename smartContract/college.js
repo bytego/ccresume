@@ -98,9 +98,7 @@ SignContract.prototype = {
             var hash = this.collIndex.get(i)
             var coll = this.coll.get(hash)
 
-            if(!coll.isHidden){
-              result.coll.push(coll)
-            }
+            result.coll.push(coll)
         }
         return result
     },

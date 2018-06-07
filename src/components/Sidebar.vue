@@ -244,14 +244,11 @@ export default {
       saveAs(file);
     },
     submitResume(){
-
-      this.$hub
-        .nebApiCall({
+      console.log(this.$hub)
+      this.$hub.nebApiCall({
           func: "addColl",
-          args: [JSON.stringify(this.sResume)]
-        })
-        .then(data => {
-
+          data: [JSON.stringify(this.sResume)]
+        }).then(data => {
           alert("提交成功");
 
         });
