@@ -41,27 +41,27 @@
         <mu-float-button icon="description" mini @click="pdf()" />
         <mu-tooltip label="生成PDF" touch :show="show.pdf" :trigger="trigger.pdf" />
       </div>
-      <div ref="json" class="s-box-btns" @mouseenter="handleHover('json')" @mouseleave="handleHoverExit('json')">
-        <mu-float-button icon="system_update_alt" mini @click="downloadJson()" />
-        <mu-tooltip label="生成JSON" touch :show="show.json" :trigger="trigger.json" />
-      </div>
-      <div ref="json_i" class="s-box-btns" @mouseenter="handleHover('json_i')" @mouseleave="handleHoverExit('json_i')">
-        <mu-float-button icon="input" mini @click="open('dialogJson')" />
-        <mu-tooltip label="导入JSON" touch :show="show.json_i" :trigger="trigger.json_i" />
-      </div>
+      <!--<div ref="json" class="s-box-btns" @mouseenter="handleHover('json')" @mouseleave="handleHoverExit('json')">-->
+        <!--<mu-float-button icon="system_update_alt" mini @click="downloadJson()" />-->
+        <!--<mu-tooltip label="生成JSON" touch :show="show.json" :trigger="trigger.json" />-->
+      <!--</div>-->
+      <!--<div ref="json_i" class="s-box-btns" @mouseenter="handleHover('json_i')" @mouseleave="handleHoverExit('json_i')">-->
+        <!--<mu-float-button icon="input" mini @click="open('dialogJson')" />-->
+        <!--<mu-tooltip label="导入JSON" touch :show="show.json_i" :trigger="trigger.json_i" />-->
+      <!--</div>-->
       <div ref="cc" class="s-box-btns" @mouseenter="handleHover('cc')" @mouseleave="handleHoverExit('cc')">
         <mu-float-button icon="closed_caption" mini @click="sCc()" />
-        <mu-tooltip label="cc长空" touch :show="show.cc" :trigger="trigger.cc" />
+        <mu-tooltip label="简历模板" touch :show="show.cc" :trigger="trigger.cc" />
       </div>
 
       <div ref="reset" class="s-box-btns" @mouseenter="handleHover('reset')" @mouseleave="handleHoverExit('reset')">
         <mu-float-button icon="delete_forever" mini @click="sClear()" secondary/>
-        <mu-tooltip label="重置" touch :show="show.reset" :trigger="trigger.reset" />
+        <mu-tooltip label="重置简历" touch :show="show.reset" :trigger="trigger.reset" />
       </div>
 
-      <mu-float-button icon="delete_forever" mini @click="sClear()" secondary/>
     </div>
-    <button class="cc-submit">提交简历</button>
+    <button class="cc-nas">{{$hub.address}}</button>
+    <button class="cc-submit" @click="submitResume()">简历上链,让好工作找到你</button>
     <!-- 按钮结束 -->
     <!-- 技能添加弹窗 -->
     <mu-dialog :open="dialogSkil" title="添加技能" @close="close('dialogSkil')">
@@ -243,6 +243,19 @@ export default {
       );
       saveAs(file);
     },
+    submitResume(){
+
+      this.$hub
+        .nebApiCall({
+          func: "addColl",
+          args: [JSON.stringify(this.sResume)]
+        })
+        .then(data => {
+
+          alert("提交成功");
+
+        });
+    },
     downloadPDF(imageData) {
       const img = new Image();
       img.src = imageData;
@@ -281,7 +294,20 @@ export default {
   background-size: 100% 200%;
   background-position: 0 50%;
 }
+.cc-nas{
+  width: 100%;
+  height: 36px;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  background: #03a9f4;
+  text-align: center;
+  color: #fff;
+  margin-top: 20px;
+}
+
 .cc-submit{
+  cursor:pointer;
   width: 100%;
   height: 36px;
   border-radius: 4px;

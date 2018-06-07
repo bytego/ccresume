@@ -5,7 +5,7 @@
         <img src="https://nebulas.io/assets/images/nebulasx60.png">
       </li>
       <li class="title" @click="$router.push('/')">云简历</li>
-      <li class="item">我的简历</li>
+      <li class="item" @click="$router.push('/')">我的简历</li>
       <li class="item" @click="$router.push('/cclist')">简历市场</li>
     </ul>
     <ul class="nav-right">

@@ -3,6 +3,7 @@
     <cc-header></cc-header>
     <router-view></router-view>
     <cc-footer></cc-footer>
+    <mu-snackbar v-if="toast_state" :message="toast_messae" action="关闭" @actionClick="hideToast" @close="hideToast"/>
   </div>
 </template>
 
@@ -108,7 +109,13 @@ export default {
         window.localStorage.setItem("avatar", window.JSON.stringify(avatar));
       }
     }
-  }
+  },
+  data() {
+    return {
+      toast_state: false,
+      toast_messae: ""
+    };
+  },
 };
 </script>
 
