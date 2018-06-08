@@ -4,25 +4,26 @@
          @click="onClickLink()"
          v-for="item in companyList.coll">
       <div class="middle">
-        <h2>{{item}}</h2>
-        <small>(男)</small>
+        <h2>{{item && item.core && item.core[0].value}}</h2>
+        <small>{{ item && item.core && '('+item.core[4].value+')' }}</small>
         <ul>
           <li>
             <span>职位：</span>
-            <span>web前端</span>
+            <span>{{item && item.core && item.core[1].value}}</span>
           </li>
           <li>
-            <span>籍贯：</span>
-            <span>上海</span>
+            <span>项目经历：</span>
+            <span>{{ item && item.exp && item.exp[1].exp.length }}个</span>
           </li>
           <li>
-            <span>工作年限：</span>
-            <span>1年</span>
+            <span>邮箱：</span>
+            <span>{{ item && item.core && item.core[3].value }}</span>
           </li>
         </ul>
         <div class="info">
-          <button type="button">4人已经阅读</button>
-          <button type="button">2人已经联系</button>
+          <button type="button">{{ item && item.num }}人已经阅读</button>
+          <button type="button">{{ item && item.num1 }}人已经联系</button>
+          <button type="button">付费0.001 nas 查看详情</button>
         </div>
       </div>
       <div class="right">
