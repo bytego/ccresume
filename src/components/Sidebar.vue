@@ -88,6 +88,8 @@
     </mu-dialog>
     <!-- JSON弹窗结束 -->
     <a :href="spic" id="dw" download="my.png"></a>
+
+    <mu-snackbar v-if="toast_state" :message="toast_messae" action="关闭" @actionClick="hideToast" @close="hideToast"/>
   </div>
 </template>
 
@@ -130,7 +132,9 @@ export default {
         pdf: null,
         json: null,
         json_i: null
-      }
+      },
+      toast_state:false,
+      toast_messae:''
     };
   },
   mounted() {
@@ -244,6 +248,11 @@ export default {
       saveAs(file);
     },
     submitResume(){
+      if(!this.$hub.address){
+        this.showToast('请先安装NAS钱包,地址：https://github.com/nebulasio/WebExtensionWallet');
+        return;
+      }
+
       console.log(this.$hub)
 
       var data = {
@@ -278,6 +287,13 @@ export default {
         );
         doc.save("pdf_" + Date.now() + ".pdf");
       };
+    },
+    showToast(msg){
+      this.toast_state = true;
+      this.toast_messae = msg;
+    },
+    hideToast(){
+      this.toast_state = false;
     }
   }
 };

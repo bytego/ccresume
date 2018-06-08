@@ -48,7 +48,6 @@
 
     },
     methods: {
-
       getColl(formUser) {
         this.$hub
           .nebApiCall({
@@ -56,7 +55,6 @@
             args: [formUser]
           })
           .then(data => {
-
             this.resume = data;
           });
       },

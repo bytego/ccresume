@@ -5,13 +5,13 @@
          v-for="item in companyList.coll" v-if="item">
       <div class="middle">
         <h2>{{item && item.core && item.core[0].value}}</h2>
-        <!--<small>{{ item && item.core && '('+item.core[4].value+')' }}</small>-->
+        <small v-if="item && item.core && item.core.length > 4">{{item.core[4].value?'('+item.core[4].value+')':''}}</small>
         <ul>
-          <li v-for="c in item.core">
+          <!--<li v-for="c in item.core">
             <span>{{c.name}}</span>
             <span>{{c.value}}</span>
-          </li>
-          <!--<li>
+          </li>-->
+          <li>
             <span>职位：</span>
             <span>{{item && item.core && item.core[1].value}}</span>
           </li>
@@ -21,13 +21,13 @@
           </li>
           <li>
             <span>邮箱：</span>
-            <span>{{ item && item.core && item.core[3].value }}</span>
-          </li>-->
+            <span>{{ item && item.core && item.core.length > 3 && item.core[3].value }}</span>
+          </li>
         </ul>
         <div class="info">
           <button type="button">{{ item && item.num }}人已经阅读</button>
           <button type="button">{{ item && item.num1 }}人已经联系</button>
-          <button type="button" @click="onClickLink(item.fromUser)">付费0.00001 nas 查看详情</button>
+          <button type="button">付费0.00001 nas 查看详情</button>
         </div>
       </div>
       <div class="right">
@@ -64,12 +64,28 @@
             args: [this.limit,this.offset]
           })
           .then(data => {
+            console.log(data)
+
             if (this.offset == -1) {
               this.offset = data.total
             }
             this.companyList.total = data.total
-            this.companyList.coll = data.coll
+            this.companyList.coll = this.removeRepeat(data.coll);
           });
+      },
+      removeRepeat(list){
+        var map = {}
+        var rs = [];
+        list.forEach(li => {
+          if(!li){
+            return;
+          }
+          if(!map[li.fromUser]){
+            rs.push(li);
+            map[li.fromUser] = true;
+          }
+        });
+        return rs;
       },
       onClickLink (forUser) {
 

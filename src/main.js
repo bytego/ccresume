@@ -90,13 +90,14 @@ Vue.prototype.$hub = new Vue({
     address(n, o) {
       if (!n) {
         return
+      }else{
+        this.fetchUserInfo();
       }
     }
   },
   created: function () {
     this.messageListener()
     this.getWallectInfo()
-    this.fetchUserInfo();
   },
   methods: {
     fetchUserInfo() {
@@ -104,11 +105,10 @@ Vue.prototype.$hub = new Vue({
         return
       }
       this.nebApiCall({
-        func: "getColl"
+        func: "getColl",
+        args:[this.address]
       }).then(data => {
-        if (data) {
-          this.user = data
-        }
+        this.myBlockInfo = data;
       });
     },
     getWallectInfo: function () {
@@ -262,6 +262,7 @@ Vue.prototype.$hub = new Vue({
   data() {
     return {
       address: "",
+      myBlockInfo:null,
       user: {
         address: "",
         created: 0,
