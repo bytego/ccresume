@@ -1,13 +1,17 @@
 <template>
   <div class="list-main">
     <div class="cc-list"
-         @click="onClickLink()"
-         v-for="item in companyList.coll">
+         @click="onClickLink(item.fromUser)"
+         v-for="item in companyList.coll" v-if="item">
       <div class="middle">
         <h2>{{item && item.core && item.core[0].value}}</h2>
-        <small>{{ item && item.core && '('+item.core[4].value+')' }}</small>
+        <!--<small>{{ item && item.core && '('+item.core[4].value+')' }}</small>-->
         <ul>
-          <li>
+          <li v-for="c in item.core">
+            <span>{{c.name}}</span>
+            <span>{{c.value}}</span>
+          </li>
+          <!--<li>
             <span>职位：</span>
             <span>{{item && item.core && item.core[1].value}}</span>
           </li>
@@ -18,12 +22,12 @@
           <li>
             <span>邮箱：</span>
             <span>{{ item && item.core && item.core[3].value }}</span>
-          </li>
+          </li>-->
         </ul>
         <div class="info">
           <button type="button">{{ item && item.num }}人已经阅读</button>
           <button type="button">{{ item && item.num1 }}人已经联系</button>
-          <button type="button">付费0.001 nas 查看详情</button>
+          <button type="button" @click="onClickLink(item.fromUser)">付费0.00001 nas 查看详情</button>
         </div>
       </div>
       <div class="right">
@@ -64,18 +68,31 @@
               this.offset = data.total
             }
             this.companyList.total = data.total
-            this.companyList.coll = this.companyList.coll.concat(
-              data.coll
-            );
+            this.companyList.coll = data.coll
           });
       },
-      onClickLink (item) {
-        this.$router.push({
-          path: '/detail',
-          query: {
-            id: 111
+      onClickLink (forUser) {
+
+        var data = {
+          func: "addProve",
+          data: [forUser],
+          value : 0.00001,
+          context: this,
+          successMsg: "支付查看简历成功!",
+          successFunc: (resp) => {
+
+            this.$router.push({
+              path: '/detail',
+              query: {
+                id: forUser
+              }
+            })
+
           }
-        })
+        };
+
+        this.$hub.nebPayCall(data);
+
       }
     }
   }

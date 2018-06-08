@@ -13,8 +13,8 @@
     name: "app",
     data() {
       return {
-        resume: JSON.parse(window.localStorage.getItem("resume")) || CC,
-        avatar: JSON.parse(window.localStorage.getItem("avatar")) || ""
+        resume: "",
+        avatar: ""
       };
     },
     components: {
@@ -22,6 +22,12 @@
       Subject
     },
     mounted () {
+
+    },
+    created() {
+
+      this.getColl(this.$route.query.id);
+
       this.$nextTick(() => {
         let $input = this.$refs.detail.getElementsByTagName('input')
         let $textarea = this.$refs.detail.getElementsByTagName('textarea')
@@ -39,8 +45,22 @@
           $button[i].readOnly = true
         }
       })
+
     },
     methods: {
+
+      getColl(formUser) {
+        this.$hub
+          .nebApiCall({
+            func: "getColl",
+            args: [formUser]
+          })
+          .then(data => {
+
+            this.resume = data;
+          });
+      },
+
       add(val, type, index, types) {
         let vals = {};
         for (let i in val) {

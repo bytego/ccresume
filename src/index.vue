@@ -54,6 +54,7 @@
             { name: "姓名", value: "" },
             { name: "职业", value: "" },
             { name: "电话", value: "" },
+            { name: "邮箱", value: "" },
             { name: "简介", value: "" }
           ],
           skils: [

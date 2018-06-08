@@ -1,6 +1,6 @@
 <template>
   <div class="cc-footer">
-    <p>系统基于  技术，学习，联系作者：who1753@163.com</p>
+    <h5 >系统基于 <a href="https://nebulas.io/" target="_blank">星云链</a> 技术，学习<a href="https://nebulas.io/cn/developers.html" target="_blank">区块链开发</a>，联系作者：who1753@163.com </h5>
   </div>
 </template>
 <script>

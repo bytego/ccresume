@@ -18,7 +18,7 @@ export default {
   name: "app",
   data() {
     return {
-      resume: JSON.parse(window.localStorage.getItem("resume")) || CC,
+      resume: JSON.parse(window.localStorage.getItem("resume")),
       avatar: JSON.parse(window.localStorage.getItem("avatar")) || ""
     };
   },
