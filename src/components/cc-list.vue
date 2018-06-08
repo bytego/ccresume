@@ -41,7 +41,7 @@
         limit: 20,
         companyList: {
           total: -1,
-          company: []
+          coll: []
         }
       };
     },
@@ -63,7 +63,7 @@
               this.offset = data.total
             }
             this.companyList.total = data.total
-            this.companyList.company = this.companyList.company.concat(
+            this.companyList.coll = this.companyList.coll.concat(
               data.coll
             );
           });

@@ -245,13 +245,18 @@ export default {
     },
     submitResume(){
       console.log(this.$hub)
-      this.$hub.nebApiCall({
-          func: "addColl",
-          data: [JSON.stringify(this.sResume)]
-        }).then(data => {
-          alert("提交成功");
 
-        });
+      var data = {
+        func: "addColl",
+        data: [this.sResume],
+        context: this,
+        successMsg: "更新简历信息成功!",
+        successFunc: function(resp) {
+          location.reload();
+        }
+      };
+
+      this.$hub.nebPayCall(data);
     },
     downloadPDF(imageData) {
       const img = new Image();

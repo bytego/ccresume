@@ -53,8 +53,8 @@ var HttpRequest = nebulas.HttpRequest,
 var chainnetConfig = {
   mainnet: {
     name: "主网",
-    contractAddress: "n1jPTNAdis1AwgjkrB2xeoRhDowjMqKz8wh",
-    txhash: "51fdf96049a0335425cd69a0bf149c120fd96365d4774b523005eb957de97fb5",
+    contractAddress: "n1vrqLihCH7H4awGZd8z4YoTiVEyUWG4DjR",
+    txhash: "b2dec6c2fed847179ebe17367d6ab09d3ea1d34f78e964a62920d1ec2cb6cf5d",
     host: "https://mainnet.nebulas.io",
     payhost: "https://pay.nebulas.io/api/mainnet/pay",
     admin: "n1Wtby3Pv2k66w9DMHaSmM7DYMFuqiQQcF8",
@@ -130,6 +130,7 @@ Vue.prototype.$hub = new Vue({
       })
     },
     nebApiCall: function (config) {
+
       // var _this = this
       var args = config.args || []
       return nebApi.call({
@@ -145,13 +146,13 @@ Vue.prototype.$hub = new Vue({
           args: JSON.stringify(args)
         }
       }).then(resp => {
+
         if (resp.execute_err && resp.execute_err != 'insufficient balance') {
-          // app.$refs.app.toast(resp.execute_err, 2000)
-          app.$refs.app.toast('1111', 2000)
-          // throw new Error(resp.execute_err)
+          app.$refs.app.toast(resp.execute_err, 2000)
+          throw new Error(resp.execute_err)
         }
-        // var result = JSON.parse(resp.result)
-        // return result
+        var result = JSON.parse(resp.result)
+        return result
       })
     },
     nebPayCall: function (config) {
@@ -165,7 +166,7 @@ Vue.prototype.$hub = new Vue({
         options = {
           callback: chainInfo.payhost,
           listener: function (value) {
-            mylog("listener:", value, serialNumber)
+            // mylog("listener:", value, serialNumber)
 
             if (typeof value == 'string') {
 
